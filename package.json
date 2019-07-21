@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "babel ./server -d dist",
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "start:dev": "nodemon --exec babel-node ./server/app.js",
     "heroku-postbuild": "npm run db:ready && npm run build",
     "mocha-test": "mocha --require @babel/register ./tests/* --timeout 20000 --exit",
