@@ -4,24 +4,26 @@
   "description": "This application select team lead and quality assurance at random to ensure fairness and equal distribution",
   "main": "server.js",
   "scripts": {
-    "start": "node ./build/server.js",
-    "start:dev": "nodemon --exec babel-node ./server.js",
-    "generate": "node ./build/server/helper/team-lead.js --exit",
-    "test": "npm run migrate-test  && mocha  --require @babel/register ./server/tests/* --exit",
-    "build": "babel -d ./build ./server.js && babel -d ./build/server ./server",
-    "migrate-test": "node ./server/database/test-db-config.js",
-    "migrate": "node ./server/database/config.js",
-    "coverage": "nyc npm run test",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "heroku-postbuild": "npm run migrate && npm run build"
+    "build": "babel ./server -d dist",
+    "start": "node dist/index.js",
+    "start:dev": "nodemon --exec babel-node ./server/app.js",
+    "heroku-postbuild": "npm run db:ready && npm run build",
+    "mocha-test": "mocha --require @babel/register ./tests/* --timeout 20000 --exit",
+    "test": "npm-run-all db:migrate db:seed mocha-test db:undo -s",
+    "db:ready": "npm-run-all db:undo db:migrate db:seed",
+    "db:migrate": "sequelize db:migrate",
+    "db:undo": "sequelize db:migrate:undo:all",
+    "db:seed": "sequelize db:seed:all"
   },
   "author": "Isidahomen Oseikweme",
   "license": "MIT",
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "make-runnable": "^1.3.6",
-    "pg": "^7.11.0"
+    "pg": "^7.11.0",
+    "sequelize": "^5.10.1",
+    "sequelize-cli": "^5.5.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -29,28 +31,13 @@
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
-    "babel-plugin-istanbul": "^5.1.4",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "coveralls": "^3.0.5",
-    "cross-env": "^5.2.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.0",
     "nodemon": "^1.19.1",
-    "nyc": "^14.1.1"
-  },
-  "nyc": {
-    "require": [
-      "@babel/register"
-    ],
-    "reporter": [
-      "lcov",
-      "text",
-      "html"
-    ],
-    "sourceMap": false,
-    "instrument": false
+    "npm-run-all": "^4.1.5"
   }
 }
