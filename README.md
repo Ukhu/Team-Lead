@@ -1,21 +1,17 @@
 # Team Lead
-
-[![Build Status](https://travis-ci.com/benisi/Team-Lead.svg?branch=develop)](https://travis-ci.org/benisi/Team-Lead) [![Coverage Status](https://coveralls.io/repos/github/benisi/Team-Lead/badge.svg?branch=develop)](https://coveralls.io/github/benisi/Team-Lead?branch=develop)
-
+[![Build Status](https://travis-ci.com/Ukhu/Team-Lead.svg?branch=develop)](https://travis-ci.com/Ukhu/Team-Lead)
 ## Description
 
 Team Lead is a project that randomly select members of a team to lead the team every week without repeatition per cycle
 
-[Project Planned with PIVOTAL TRACKER](https://www.pivotaltracker.com/n/projects/2375389)
-
-[Hosted API on Heroku]()<br/>
+[Hosted API on Heroku](https://team-lead-dahlia.herokuapp.com/)<br/>
 
 ## Installation
 
 1.  Clone the repository by running the code below:
 
 ```shell
-git clone https://github.com/benisi/Team-Lead.git
+git clone https://github.com/Ukhu/Team-Lead.git
 ```
 
 2.  cd into the repository:
