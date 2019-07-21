@@ -1,4 +1,5 @@
 /* eslint-disable no-await-in-loop */
+import '@babel/polyfill';
 import models from '../db/models';
 
 const {
