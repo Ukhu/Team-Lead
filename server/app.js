@@ -1,10 +1,13 @@
 import '@babel/polyfill';
 import express from 'express';
+import cors from 'cors';
 import routes from './routes/index';
 
 const app = express();
 
 require('dotenv').config();
+
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 const BASE_URL = '/api/v1';
